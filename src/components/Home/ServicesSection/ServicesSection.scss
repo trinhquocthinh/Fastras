@@ -1,0 +1,150 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.service-card {
+  padding-inline: 25px;
+  text-align: center;
+}
+
+.card-icon {
+  position: relative;
+  background-color: var(--cultured);
+  max-width: max-content;
+  margin-inline: auto;
+  padding: 40px;
+  border-radius: 50%;
+  margin-block-end: 40px;
+  overflow: hidden;
+  transition: var(--transition-1);
+  z-index: 1;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 50%;
+    transition: var(--transition-1);
+    z-index: -1;
+  }
+
+  &::before {
+    background-color: var(--blue-green-color-wheel);
+    transform: translateY(120px);
+  }
+
+  &::after {
+    background-color: var(--orange-web);
+    transform: translateY(150px);
+  }
+
+  img {
+    transition: var(--transition-1);
+  }
+}
+
+.service-card:is(:hover, :focus-within, .active) {
+  .card-icon::before {
+    transform: translateY(0);
+  }
+
+  .card-icon::after {
+    transform: translateY(120px);
+  }
+
+  .card-icon img {
+    filter: grayscale(1) brightness(0) invert(1);
+  }
+
+  .btn {
+    opacity: 1;
+  }
+}
+
+.service-card .h3 {
+  --fs-4: 2.4rem;
+}
+
+.card-title {
+  transition: var(--transition-1);
+
+  &:is(:hover, :focus) {
+    color: var(--orange-web);
+  }
+}
+
+.card-text {
+  font-size: var(--fs-5);
+  margin-block: 20px 35px;
+}
+
+.service-card .btn {
+  margin-inline: auto;
+  font-size: 18px;
+  padding: 0;
+  max-width: 60px;
+  height: 60px;
+  display: grid;
+  place-content: center;
+}
+
+// Mobile and up (575px+)
+@include mobile-up {
+  .service-card {
+    max-width: 380px;
+    margin-inline: auto;
+  }
+
+  .card-icon {
+    padding: 50px;
+
+    img {
+      width: 70px;
+    }
+
+    &::before {
+      transform: translateY(150px);
+    }
+
+    &::after {
+      transform: translateY(180px);
+    }
+  }
+
+  .service-card:is(:hover, :focus-within, .active) .card-icon::after {
+    transform: translateY(150px);
+  }
+
+  .service-card .h3 {
+    --fs-4: 3.5rem;
+  }
+}
+
+// Laptop and up
+@include laptop-up {
+  .service .grid-list {
+    gap: 0;
+
+    > li:nth-child(2) {
+      border-inline: 1px solid var(--cultured);
+    }
+  }
+
+  .service-card .h3 {
+    --fs-4: 3rem;
+  }
+}
+
+// Desktop and up
+@include desktop-up {
+  .service-card .h3 {
+    --fs-4: 3.5rem;
+  }
+
+  .service-card .btn {
+    opacity: 0;
+  }
+}

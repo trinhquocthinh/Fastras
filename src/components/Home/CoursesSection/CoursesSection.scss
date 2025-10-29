@@ -1,0 +1,66 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.course-card {
+  .card-banner {
+    margin-block-end: 30px;
+  }
+
+  .card-content {
+    position: relative;
+    padding: 20px;
+    padding-block-end: 15px;
+  }
+
+  .card-price {
+    background-color: var(--blue-green-color-wheel);
+    color: var(--white);
+    font-weight: var(--fw-700);
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    margin-inline: auto;
+    margin-block-start: -80px;
+    margin-block-end: 20px;
+    border: 2px solid var(--white);
+    border-radius: 50%;
+  }
+
+  .card-title {
+    margin-block: 10px 20px;
+    transition: var(--transition-1);
+
+    &:is(:hover, :focus) {
+      color: var(--orange-web);
+    }
+  }
+}
+
+// Mobile and up (575px+)
+@include mobile-up {
+  .course .grid-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Tablet and up
+@include tablet-up {
+  .course-card {
+    .card-price {
+      width: 80px;
+      height: 80px;
+      font-size: var(--fs-4);
+      margin-block-start: -100px;
+    }
+
+    .h3 {
+      --fs-4: 2.4rem;
+    }
+
+    .card-content {
+      padding: 30px;
+      padding-block-end: 25px;
+    }
+  }
+}
