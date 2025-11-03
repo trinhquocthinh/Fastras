@@ -2,7 +2,7 @@
 
 import type { Route } from 'next';
 import Link from 'next/link';
-import { memo, type FormEvent } from 'react';
+import { memo, useState, type FormEvent } from 'react';
 import { FaApple, FaGoogle, FaLinkedinIn } from 'react-icons/fa';
 
 import type { AuthFormConfig } from '@/types';
@@ -11,6 +11,7 @@ import './AuthForm.scss';
 
 type AuthFormProps = {
   config: AuthFormConfig;
+  onSubmit?: (data: Record<string, string>) => Promise<void>;
 };
 
 const socialIcons = {
@@ -19,9 +20,41 @@ const socialIcons = {
   linkedin: FaLinkedinIn,
 } as const;
 
-const AuthForm = ({ config }: AuthFormProps) => {
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+const AuthForm = ({ config, onSubmit }: AuthFormProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setError(null);
+    setSuccess(null);
+
+    if (!onSubmit) {
+      return;
+    }
+
+    const formData = new FormData(event.currentTarget);
+    const data: Record<string, string> = {};
+
+    config.fields.forEach(field => {
+      data[field.name] = formData.get(field.name) as string;
+    });
+
+    if (config.rememberMe) {
+      data.remember = formData.get('remember') === 'on' ? 'true' : 'false';
+    }
+
+    setIsLoading(true);
+
+    try {
+      await onSubmit(data);
+      setSuccess('Success!');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const rememberId = `${config.id}-remember`;
@@ -52,6 +85,24 @@ const AuthForm = ({ config }: AuthFormProps) => {
         ))}
       </div>
 
+      {error ? (
+        <div
+          className="auth-form__message auth-form__message--error"
+          role="alert"
+        >
+          {error}
+        </div>
+      ) : null}
+
+      {success ? (
+        <div
+          className="auth-form__message auth-form__message--success"
+          role="status"
+        >
+          {success}
+        </div>
+      ) : null}
+
       {config.rememberMe || config.helperLink ? (
         <div className="auth-form__extras">
           {config.rememberMe ? (
@@ -78,8 +129,12 @@ const AuthForm = ({ config }: AuthFormProps) => {
         </div>
       ) : null}
 
-      <button className="auth-form__submit btn btn-primary" type="submit">
-        {config.submitLabel}
+      <button
+        className="auth-form__submit btn btn-primary"
+        type="submit"
+        disabled={isLoading}
+      >
+        {isLoading ? 'Loading...' : config.submitLabel}
       </button>
 
       {config.secondaryHelper ? (

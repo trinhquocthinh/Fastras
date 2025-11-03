@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 
-import { AuthCardLayout, AuthForm } from '@/components';
-import { resetPasswordContent, resetPasswordForm } from '@/constants/auth';
+import ResetPasswordPageClient from './ResetPasswordPageClient';
 
 export const metadata: Metadata = {
   title: 'Reset Password | fastras',
@@ -15,19 +14,8 @@ type ResetPasswordPageProps = {
   };
 };
 
-const getTokenSuffix = (token: string) => token.slice(-6);
-
-const ResetPasswordPage = ({ params }: ResetPasswordPageProps) => {
-  const tokenSuffix = getTokenSuffix(params.token);
-
-  return (
-    <AuthCardLayout content={resetPasswordContent}>
-      <AuthForm config={resetPasswordForm} />
-      <p className="auth-card__token-hint">
-        Secure reset reference ending with <strong>{tokenSuffix}</strong>
-      </p>
-    </AuthCardLayout>
-  );
-};
+const ResetPasswordPage = ({ params }: ResetPasswordPageProps) => (
+  <ResetPasswordPageClient token={params.token} />
+);
 
 export default ResetPasswordPage;

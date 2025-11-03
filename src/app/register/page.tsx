@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 
-import { AuthForm, AuthSplitLayout } from '@/components';
-import { registerContent, registerForm } from '@/constants/auth';
+import RegisterPageClient from './RegisterPageClient';
 
 export const metadata: Metadata = {
   title: 'Create Account | fastras',
@@ -9,10 +8,6 @@ export const metadata: Metadata = {
     'Join fastras to unlock expert-guided fitness, nutrition, and wellness courses with personalized programs and community support.',
 };
 
-const RegisterPage = () => (
-  <AuthSplitLayout content={registerContent}>
-    <AuthForm config={registerForm} />
-  </AuthSplitLayout>
-);
+const RegisterPage = () => <RegisterPageClient />;
 
 export default RegisterPage;

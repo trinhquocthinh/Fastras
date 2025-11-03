@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@fastras.com",
+      "password": "$2b$10$1HLvjq1be2vge7bEzh7QL.1m98wlY./timgXdosSiuYF2DZ1QRu6W",
+      "fullName": "Admin User",
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "email": "user@example.com",
+      "password": "$2b$10$1HLvjq1be2vge7bEzh7QL.1m98wlY./timgXdosSiuYF2DZ1QRu6W",
+      "fullName": "Test User",
+      "createdAt": "2024-01-15T00:00:00.000Z"
+    }
+  ],
+  "resetTokens": []
+}
