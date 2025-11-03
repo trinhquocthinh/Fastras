@@ -9,6 +9,12 @@ export const metadata: Metadata = {
     'Create a new fastras password to continue learning with confidence across fitness, nutrition, and wellness courses.',
 };
 
+export function generateStaticParams() {
+  // Return empty array as tokens are generated dynamically
+  // The page will be generated on-demand
+  return [];
+}
+
 type ResetPasswordPageProps = {
   params: {
     token: string;
