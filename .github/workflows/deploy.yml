@@ -52,8 +52,8 @@ jobs:
           export GITHUB_ACTIONS=true
           export GITHUB_REPOSITORY=${{ github.repository }}
           export NODE_ENV=production
-          export NEXT_PUBLIC_SITE_URL=https://trinhquocthinh.github.io/foodhub
-          export NEXT_PUBLIC_BASE_PATH=/foodhub
+          export NEXT_PUBLIC_SITE_URL=https://trinhquocthinh.github.io/fastras
+          export NEXT_PUBLIC_BASE_PATH=/fastras
           yarn build:gh
 
       - name: Add .nojekyll file

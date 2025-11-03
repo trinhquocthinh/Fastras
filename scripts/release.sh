@@ -80,4 +80,4 @@ git push origin main
 git push origin --tags
 
 echo "✅ Release v$NEW_VERSION completed successfully!"
-echo "🔗 Create a GitHub release at: https://github.com/trinhquocthinh/foodhub/releases/new?tag=v$NEW_VERSION"
+echo "🔗 Create a GitHub release at: https://github.com/trinhquocthinh/fastras/releases/new?tag=v$NEW_VERSION"

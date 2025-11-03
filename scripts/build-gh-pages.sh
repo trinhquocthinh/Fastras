@@ -7,8 +7,8 @@
 export NODE_ENV=production
 
 # Set GitHub Pages specific variables
-export NEXT_PUBLIC_SITE_URL="https://trinhquocthinh.github.io/foodhub"
-export NEXT_PUBLIC_BASE_PATH="/foodhub"
+export NEXT_PUBLIC_SITE_URL="https://trinhquocthinh.github.io/fastras"
+export NEXT_PUBLIC_BASE_PATH="/fastras"
 
 # Clean previous builds
 rm -rf .next out
@@ -28,7 +28,7 @@ if [ -d "out" ]; then
   echo "✅ Build complete! Output in ./out directory"
   echo "📁 Images location: ./out/images/"
   echo "🌐 Test locally: npx serve out -l 3000"
-  echo "   Then visit: http://localhost:3000/foodhub"
+  echo "   Then visit: http://localhost:3000/fastras"
 else
   echo "❌ Build failed - out directory not found"
   exit 1
