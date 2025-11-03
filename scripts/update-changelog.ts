@@ -35,7 +35,7 @@ function getCommitsSinceLastTag(): string[] {
     execSync('git rev-parse --git-dir', { stdio: 'ignore' });
 
     let lastTag: string | null = null;
-    
+
     // Try to get the last tag - first attempt with git describe
     try {
       lastTag = execSync('git describe --tags --abbrev=0', {

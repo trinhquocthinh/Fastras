@@ -33,6 +33,7 @@ const securityHeaders = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   basePath: publicBasePath || undefined,
   assetPrefix: publicBasePath || undefined,
   reactStrictMode: true,
