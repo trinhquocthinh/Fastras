@@ -1,6 +1,6 @@
 {
   "name": "fastras-website",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "packageManager": "yarn@1.22.19",
   "scripts": {
