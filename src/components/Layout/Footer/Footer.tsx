@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { IoHeart } from 'react-icons/io5';
 
 import {
@@ -9,7 +10,6 @@ import {
 } from '@/constants/layout';
 
 import './Footer.scss';
-import Link from 'next/dist/client/link';
 
 const Footer = () => (
   <footer className="footer">

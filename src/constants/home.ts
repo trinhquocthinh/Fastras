@@ -1,8 +1,7 @@
 import type { ElementType } from 'react';
 
-import type { AppLink, BlogPost, Course, Service, SocialLink } from '@/types';
-
 import { socialLinks } from '@/constants/layout';
+import type { AppLink, BlogPost, Course, Service, SocialLink } from '@/types';
 
 export const heroContent = {
   id: 'home',

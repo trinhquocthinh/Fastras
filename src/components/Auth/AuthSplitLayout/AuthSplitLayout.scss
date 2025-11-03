@@ -1,0 +1,117 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.auth-split {
+  min-height: 100vh;
+  background-color: var(--cultured);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: inherit;
+  }
+
+  &__media {
+    position: relative;
+    display: grid;
+    align-items: flex-end;
+    background-image: var(--auth-illustration);
+    background-size: cover;
+    background-position: center;
+    padding: 80px 30px 60px;
+    color: var(--white);
+    isolation: isolate;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(6, 35, 28, 0.75),
+        rgba(6, 35, 28, 0.6)
+      );
+      z-index: -1;
+    }
+  }
+
+  &__media-inner {
+    max-width: 420px;
+    margin-inline: auto;
+  }
+
+  &__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: var(--fw-600);
+  }
+
+  &__title {
+    color: var(--white);
+    margin-block: 18px 16px;
+  }
+
+  &__description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: var(--fs-4);
+  }
+
+  &__content {
+    display: grid;
+    place-items: center;
+    padding: 60px 20px;
+  }
+
+  &__card {
+    width: min(460px, 100%);
+    padding: 40px 32px;
+    border-radius: var(--radius-10);
+    background-color: var(--white);
+    box-shadow: var(--shadow-1);
+  }
+
+  &__footer {
+    margin-block-start: 28px;
+    text-align: center;
+    color: var(--spanish-gray);
+  }
+
+  &__footer-link {
+    display: inline-block;
+    font-weight: var(--fw-600);
+    color: var(--orange-web);
+    transition: color var(--transition-1);
+
+    &:is(:hover, :focus) {
+      color: var(--blue-green-color-wheel);
+    }
+  }
+}
+
+@include tablet-up {
+  .auth-split {
+    &__media {
+      padding: 120px 40px 80px;
+    }
+
+    &__card {
+      padding: 48px 40px;
+    }
+  }
+}
+
+@include laptop-up {
+  .auth-split {
+    &__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &__media {
+      min-height: 100vh;
+    }
+
+    &__content {
+      padding: 80px 40px;
+    }
+  }
+}

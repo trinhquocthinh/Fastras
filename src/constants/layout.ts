@@ -1,13 +1,12 @@
 import type { ElementType } from 'react';
-
-import type { NavLink, SocialLink } from '@/types';
-
 import {
   IoLogoFacebook,
   IoLogoLinkedin,
   IoLogoSkype,
   IoLogoTwitter,
 } from 'react-icons/io5';
+
+import type { NavLink, SocialLink } from '@/types';
 
 export const siteName = 'fastras';
 

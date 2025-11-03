@@ -53,7 +53,7 @@ const Header = ({
         </ul>
       </nav>
 
-      <a href="#contact" className="btn btn-primary">
+      <a href="/login" className="btn btn-primary">
         Sign Up
       </a>
 

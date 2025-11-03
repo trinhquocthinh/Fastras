@@ -1,6 +1,6 @@
 import { IoChevronUp } from 'react-icons/io5';
 
-import './backToTopButton.scss';
+import './BackToTopButton.scss';
 
 export type BackToTopButtonProps = {
   isVisible: boolean;

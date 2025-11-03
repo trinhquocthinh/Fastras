@@ -1,7 +1,6 @@
-import type { ReactNode } from 'react';
 import { Montserrat, Playfair_Display } from 'next/font/google';
+import type { ReactNode } from 'react';
 
-import { Layout } from '@/components';
 import { metadata as siteMetadata } from '@/config/seo';
 
 import '../styles/globals.scss';
@@ -29,7 +28,7 @@ type RootLayoutProps = {
 const RootLayout = ({ children }: RootLayoutProps) => (
   <html lang="en">
     <body className={`${montserrat.variable} ${playfair.variable}`} id="top">
-      <Layout>{children}</Layout>
+      {children}
     </body>
   </html>
 );

@@ -1,11 +1,11 @@
 'use client';
 
-import type { ReactNode } from 'react';
+import type { KeyboardEvent, ReactNode } from 'react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import BackToTopButton from '@/components/BackToTop';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import BackToTopButton from '@/components/Layout/BackToTop';
+import Footer from '@/components/Layout/Footer';
+import Header from '@/components/Layout/Header';
 
 export type LayoutProps = {
   children: ReactNode;
@@ -23,6 +23,16 @@ const Layout = ({ children }: LayoutProps) => {
   const toggleNav = useCallback(() => {
     setNavOpen(prev => !prev);
   }, []);
+
+  const handleOverlayKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        closeNav();
+      }
+    },
+    [closeNav]
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -93,7 +103,15 @@ const Layout = ({ children }: LayoutProps) => {
         onToggleNav={toggleNav}
         onCloseNav={closeNav}
       />
-      <div className={overlayClassName} data-overlay onClick={closeNav} />
+      <div
+        className={overlayClassName}
+        data-overlay
+        onClick={closeNav}
+        onKeyDown={handleOverlayKeyDown}
+        role="button"
+        tabIndex={navOpen ? 0 : -1}
+        aria-label="Close navigation menu"
+      />
       <main>{children}</main>
       <Footer />
       <BackToTopButton isVisible={showBackToTop} />
