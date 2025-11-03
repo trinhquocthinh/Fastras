@@ -273,13 +273,19 @@ function updateChangelog(newVersion: string): void {
     '',
   ];
 
-  // Rebuild the changelog
-  const newLines = [
-    ...lines.slice(0, unreleasedIndex),
-    ...newUnreleasedSection,
-    ...newVersionSection,
-    ...lines.slice(nextVersionIndex),
-  ];
+  // Rebuild the changelog - only add new version section if there's content
+  const newLines = hasContent
+    ? [
+        ...lines.slice(0, unreleasedIndex),
+        ...newUnreleasedSection,
+        ...newVersionSection,
+        ...lines.slice(nextVersionIndex),
+      ]
+    : [
+        ...lines.slice(0, unreleasedIndex),
+        ...newUnreleasedSection,
+        ...lines.slice(nextVersionIndex),
+      ];
 
   // Write back to file
   fs.writeFileSync(changelogPath, newLines.join('\n'));

@@ -7,6 +7,8 @@ import { findUserById } from '@/lib/db';
 const JWT_SECRET =
   process.env.JWT_SECRET || 'your-secret-key-change-in-production';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const authHeader = request.headers.get('authorization');
