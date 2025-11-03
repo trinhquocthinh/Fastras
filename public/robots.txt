@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://trinhquocthinh.github.io/fastras
+
+# Sitemaps
+Sitemap: https://trinhquocthinh.github.io/fastras/sitemap.xml
+Sitemap: https://trinhquocthinh.github.io/fastras/server-sitemap.xml

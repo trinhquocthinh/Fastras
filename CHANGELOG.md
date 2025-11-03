@@ -19,4 +19,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## [1.0.2] - 2025-11-03
+
+### Fixed
+
+- Changelog is not updated and build fail
+
 ## [1.0.1] - 2025-11-03
+
+### Added
+
+- Full pages auth
+
+### Changed
+
+- Full mock api for auth

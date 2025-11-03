@@ -34,20 +34,37 @@ function getCommitsSinceLastTag(): string[] {
     // Validate we're in a git repository
     execSync('git rev-parse --git-dir', { stdio: 'ignore' });
 
-    // Get the last tag with safe, fixed command
-    const lastTag = execSync('git describe --tags --abbrev=0', {
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'ignore'],
-      env: { ...process.env, PATH: '/usr/bin:/bin' },
-    }).trim();
+    let lastTag: string | null = null;
+    
+    // Try to get the last tag - first attempt with git describe
+    try {
+      lastTag = execSync('git describe --tags --abbrev=0', {
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'ignore'],
+        env: { ...process.env, PATH: '/usr/bin:/bin' },
+      }).trim();
+    } catch {
+      // If git describe fails, try to get the most recent tag by date
+      try {
+        lastTag = execSync('git tag --sort=-creatordate | head -n 1', {
+          encoding: 'utf8',
+          shell: '/bin/bash',
+          env: { ...process.env, PATH: '/usr/bin:/bin' },
+        }).trim();
+      } catch {
+        console.log('⚠️  No tags found, getting all commits');
+      }
+    }
 
     // Build safe git command with validated tag
     let gitCommand: string;
     if (lastTag && /^[a-zA-Z0-9.\-_]+$/.test(lastTag)) {
       // Validate tag contains only safe characters
       gitCommand = `git log ${lastTag}..HEAD --pretty=format:%s`;
+      console.log(`📋 Getting commits since tag: ${lastTag}`);
     } else {
       gitCommand = 'git log --pretty=format:%s';
+      console.log('📋 Getting all commits');
     }
 
     const commits = execSync(gitCommand, {
